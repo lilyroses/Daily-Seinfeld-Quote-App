@@ -40,13 +40,13 @@ c = conn.cursor()
 #           )"""
 # )
 
-c.execute(
-    """CREATE TABLE characters (
-          character_id int,
-          name text,
-          image blob
-)"""
-)
+# c.execute(
+#     """CREATE TABLE characters (
+#           character_id int,
+#           name text,
+#           image blob
+# )"""
+# )
 
 
 conn.commit()
