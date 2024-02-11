@@ -11,13 +11,15 @@ class MainWindow(QMainWindow):
 
         # Button for changing to the previous quote
         previous_quote_button = QPushButton("Previous Quote")
-        previous_quote_button.clicked.connect(self.the_previous_quote_button_was_clicked)
+        previous_quote_button.clicked.connect(
+            self.the_previous_quote_button_was_clicked
+        )
         # Button for favoriting the quote
         favorite_quote_button = QPushButton("Favorite")
         favorite_quote_button.setCheckable(True)
         favorite_quote_button.clicked.connect(self.the_favorite_button_was_clicked)
         favorite_quote_button.clicked.connect(self.the_favorite_button_was_toggled)
-        favorite_quote_button_is_checked = False
+        # favorite_quote_button_is_checked = False
 
         # Set size of window
         self.setFixedSize(QSize(400, 300))
@@ -27,7 +29,7 @@ class MainWindow(QMainWindow):
         buttons = [previous_quote_button, favorite_quote_button]
         for button in buttons:
             layout.addWidget(button)
-        
+
         widget = QWidget()
         widget.setLayout(layout)
 

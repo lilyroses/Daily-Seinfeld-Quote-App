@@ -23,6 +23,7 @@ c = conn.cursor()
 #           air_date text
 #           )""")
 
+# Should have been named 'quotes'; fixed below
 # c.execute(
 #     """CREATE TABLE quote (
 #           quote_id int,
@@ -48,5 +49,18 @@ c = conn.cursor()
 # )"""
 # )
 
+# RENAME TABLE
+c.execute(
+    """ALTER TABLE quote (
+    RENAME TO quotes)"""
+)
 
+
+# c.execute(
+#     """ALTER TABLE quotes
+#     ADD quote_screen_shot image,
+#     ADD quote_screen_shot_timestamp text,
+#     ADD quote_timestamp_start text,
+#     ADD quote_timestamp_end text;"""
+# )
 conn.commit()
