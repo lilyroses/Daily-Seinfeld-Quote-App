@@ -1,3 +1,5 @@
 .venv
 test*
 *.ipynb
+*.drawio
+*.txt
