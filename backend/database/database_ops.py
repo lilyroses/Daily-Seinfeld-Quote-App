@@ -9,7 +9,7 @@ import sqlite3
 
 # RECORD CREATION FUNCTIONS
 # Create records for the seasons table.
-def create_season_records(seasons):
+def create_records_seasons(seasons):
     """
     Create a list of records using information from the seasons module
     for the seasons table in database 'database.db'.
@@ -40,7 +40,7 @@ def create_season_records(seasons):
 
 
 # Create records for the episodes table.
-def create_episode_records(seasons):
+def create_records_episodes(seasons):
     """
     Create a list of records (tuples) using information from the seasons
     module for the episodes table in database 'database.db'.
@@ -84,26 +84,26 @@ def create_episode_records(seasons):
 
 
 # Create records for the quotes table.
-def create_quote_records():
+def create_records_quotes():
     # Implement kword args!
     pass
 
 
 # Create records for the quotees table.
-def create_quotee_records():
+def create_records_quotees():
     # Implement kword args!
     pass
 
 
 # Create records for the characters table.
-def create_character_records():
+def create_records_characters():
     # Implement kword args!
     pass
 
 
 # WRITE FUNCTIONS
 # Write records to the seasons table.
-def add_records_to_seasons(season_records):
+def write_records_seasons(season_records):
     """Write the created records to table seasons in database.db"""
     conn = sqlite3.connect("database.db")
     c = conn.cursor()
@@ -118,7 +118,7 @@ def add_records_to_seasons(season_records):
 
 
 # Write records to the episodes table.
-def add_records_to_episodes(episode_records):
+def write_records_episodes(episode_records):
     # Add records to the seasons table
     conn = sqlite3.connect("database.db")
     c = conn.cursor()
@@ -133,15 +133,15 @@ def add_records_to_episodes(episode_records):
 
 
 # Write records to the quotes table.
-def add_records_to_quotes(quotes_records):
+def write_records_quotes(quotes_records):
     pass
 
 
 # Write records to the quotees table.
-def add_records_to_quotees(quotees_records):
+def write_records_quotees(quotees_records):
     pass
 
 
 # Write records to the characters table
-def add_records_to_characters_table(characters_records):
+def write_records_characters(characters_records):
     pass

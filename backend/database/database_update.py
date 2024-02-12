@@ -2,11 +2,16 @@
 
 from seasons import seasons
 from database import (
-    get_season_records,
-    get_episode_records,
-    get_quote
-    add_records_to_seasons,
-    add_records_to_episodes,
+    create_records_seasons,
+    create_records_episodes,
+    create_records_quotes,
+    create_records_quotees,
+    create_records_characters,
+    write_records_seasons,
+    write_records_episodes,
+    write_records_quotes,
+    write_records_quotees,
+    write_records_characters,
 )
 
 # CREATE TABLE RECORDS
