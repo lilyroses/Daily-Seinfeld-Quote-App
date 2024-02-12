@@ -1,7 +1,8 @@
 """Update the tables in database.db"""
 
 from seasons import seasons
-from database import (
+from quotes import quotes
+from database_ops import (
     create_records_seasons,
     create_records_episodes,
     create_records_quotes,
@@ -16,12 +17,20 @@ from database import (
 
 # CREATE TABLE RECORDS
 # Season records
-season_records = get_season_records(seasons)
+records_seasons = create_records_seasons(seasons)
 # Episode records
-episode_records = get_episode_records(seasons)
+records_episodes = create_records_episodes(seasons)
+# Quotes records
+records_quotes = create_records_quotes(quotes)
+# Quotees records
+records_quotees = create_records_quotees(quotes)
+# Characters records
+records_characters = create_records_characters(quotes)
+
 
 # WRITE RECORDS TO TABLE
 # Write seasons records
-add_records_to_seasons(season_records)
+# write_records_seasons(records_seasons)
+
 # Write episodes records
-add_records_to_episodes(episode_records)
+# write_records_episodes(records_episodes)
