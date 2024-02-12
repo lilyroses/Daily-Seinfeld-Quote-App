@@ -84,19 +84,19 @@ def create_episode_records(seasons):
 
 
 # Create records for the quotes table.
-def create_quotes_records():
+def create_quote_records():
     # Implement kword args!
     pass
 
 
 # Create records for the quotees table.
-def create_quotees_records():
+def create_quotee_records():
     # Implement kword args!
     pass
 
 
 # Create records for the characters table.
-def create_characters_records():
+def create_character_records():
     # Implement kword args!
     pass
 
