@@ -62,7 +62,7 @@ def get_episode_records(seasons):
             air_date = episode["air_date"]
             # A tuple of all required attributes for
             # the episodes table
-            ep_rec = (
+            record = (
                 episode_id,
                 season_id,
                 episode_no,
@@ -70,21 +70,19 @@ def get_episode_records(seasons):
                 title,
                 air_date,
             )
-
-            episode_records.append(ep_rec)
+            episode_records.append(record)
     return episode_records
 
 
-for s in seasons:
-    for e in s["episodes"]:
-        print(e)
-
-
-# def add_records_to_episodes(
-#     episode_id, season_id, episode_no, chronological_no, title, air_date
-# ):
-#     items = [
-#         episode_id,
-#         season_id,
-#         episode_no,
-#     ]
+def add_records_to_episodes(episode_records):
+    # Add records to the seasons table
+    conn = sqlite3.connect("database.db")
+    c = conn.cursor()
+    # Add values to table
+    c.executemany(
+        """INSERT INTO episodes
+                  VALUES (?,?,?,?,?,?)""",
+        (episode_records),
+    )
+    # Execute sql command
+    conn.commit()
