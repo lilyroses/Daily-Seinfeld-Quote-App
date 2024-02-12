@@ -1,66 +1,90 @@
 import sqlite3
+import json
+from seasons import seasons
 
 
-conn = sqlite3.connect("database.db")
-
-c = conn.cursor()
-
-# c.execute(
-#     """CREATE TABLE seasons (
-#           season_id int,
-#           season_no int,
-#           air_date_start text,
-#           air_date_end text
-#           )""")
-
-# c.execute(
-#     """CREATE TABLE episodes (
-#           episode_id int,
-#           season_id int,
-#           episode_no int,
-#           chronological_no int,
-#           title text,
-#           air_date text
-#           )""")
-
-# Should have been named 'quotes'; fixed below
-# c.execute(
-#     """CREATE TABLE quote (
-#           quote_id int,
-#           quotee_id int,
-#           episode_id int,
-#           quote_text text
-#           )""")
-
-# c.execute(
-#     """CREATE TABLE quotee (
-#           character_id int,
-#           quote_id int,
-#           image blob,
-#           PRIMARY KEY (character_id, quote_id)
-#           )"""
-# )
-
-# c.execute(
-#     """CREATE TABLE characters (
-#           character_id int,
-#           name text,
-#           image blob
-# )"""
-# )
-
-# RENAME TABLE
-c.execute(
-    """ALTER TABLE quote (
-    RENAME TO quotes)"""
-)
+# SEASONS
+def get_season_records(seasons):
+    # REQUIRED VALUES FOR TABLE seasons:
+    #   season_id, season_no, air_date_start,
+    #   air_date_end
+    # Holds all records (tuples)
+    season_records = []
+    # Get the 4 required attributes from the
+    # seasons dicts
+    for season in seasons:
+        season_id = season["season_id"]
+        season_no = season["season_no"]
+        air_date_start = season["air_dates"][0]
+        air_date_end = season["air_dates"][-1]
+        # Create the record (tuple)
+        record = (season_id, season_no, air_date_start, air_date_end)
+        # Add the record to the list of all records
+        season_records.append(record)
+    # Return a list of tuples for using with c.executemany()
+    # if len(season_records) == 9:
+    # return season_records
+    return season_records
 
 
-# c.execute(
-#     """ALTER TABLE quotes
-#     ADD quote_screen_shot image,
-#     ADD quote_screen_shot_timestamp text,
-#     ADD quote_timestamp_start text,
-#     ADD quote_timestamp_end text;"""
-# )
-conn.commit()
+# Add the records to the seasons table
+def add_records_to_seasons(season_records):
+    # Add records to the seasons table
+    conn = sqlite3.connect("database.db")
+    c = conn.cursor()
+    # Add values to table
+
+    c.executemany(
+        """INSERT INTO seasons
+                  VALUES (?,?,?,?)""",
+        (season_records),
+    )
+    # Execute sql command
+    conn.commit()
+
+
+# EPISODES
+def get_episode_records(seasons):
+    # REQUIRED VALUES FOR TABLE episodes:
+    #   episode_id, season_id, episode_no,
+    #   chronological_no, title, air_date
+    episode_records = []
+
+    for season in seasons:
+        # Season id is the linking FK
+        season_id = season["season_id"]
+        # Get the rest of the attributes
+        for episode in season["episodes"]:
+            episode_id = episode["episode_id"]
+            episode_no = episode["episode_no"]
+            chronological_no = episode["chronological_no"]
+            title = episode["title"]
+            air_date = episode["air_date"]
+            # A tuple of all required attributes for
+            # the episodes table
+            ep_rec = (
+                episode_id,
+                season_id,
+                episode_no,
+                chronological_no,
+                title,
+                air_date,
+            )
+
+            episode_records.append(ep_rec)
+    return episode_records
+
+
+for s in seasons:
+    for e in s["episodes"]:
+        print(e)
+
+
+# def add_records_to_episodes(
+#     episode_id, season_id, episode_no, chronological_no, title, air_date
+# ):
+#     items = [
+#         episode_id,
+#         season_id,
+#         episode_no,
+#     ]

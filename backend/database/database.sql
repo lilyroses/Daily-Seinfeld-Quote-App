@@ -1,1 +1,35 @@
-SELECT * FROM quote
+-- CREATE TABLE seasons (
+--     season_id int,
+--     season_no int,
+--     air_date_start text,
+--     air_date_end text
+-- ) CREATE TABLE episodes (
+--     episode_id int,
+--     season_id int,
+--     episode_no int,
+--     chronological_no int,
+--     title text,
+--     air_date text
+-- ) CREATE TABLE characters (
+--     character_id int,
+--     name text,
+--     image blob
+-- ) CREATE TABLE quote (
+--     quote_id int,
+--     quotee_id int,
+--     episode_id int,
+--     quote_text text
+-- ) CREATE TABLE quotee (
+--     character_id int,
+--     quote_id int,
+--     image blob,
+--     PRIMARY KEY (character_id, quote_id)
+-- )
+-- ALTER TABLE quote (
+--         RENAME TO quotes
+--     )
+-- ALTER TABLE quotes
+-- ADD quote_screen_shot image,
+--     ADD quote_screen_shot_timestamp text,
+--     ADD quote_timestamp_start text,
+--     ADD quote_timestamp_end text
