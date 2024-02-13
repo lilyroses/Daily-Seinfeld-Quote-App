@@ -163,4 +163,5 @@ def write_records_quotees(records_quotees):
 
 # Write records to the characters table
 def write_records_characters(records_characters):
+
     pass
