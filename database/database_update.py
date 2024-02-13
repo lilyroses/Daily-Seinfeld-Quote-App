@@ -1,7 +1,7 @@
 """Update the tables in database.db"""
 
-from seasons import seasons
-from quotes import quotes
+from data.episodes.episodes import seasons
+from data.quotes import quotes
 from database_ops import (
     create_records_seasons,
     create_records_episodes,
